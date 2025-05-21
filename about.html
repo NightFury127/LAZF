@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Lazreus Tech</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .about {
+      padding: 100px 0;
+    }
+    
+    .about-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    
+    .about-title {
+      font-size: 48px;
+      font-weight: 900;
+      margin-bottom: 20px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .about-subtitle {
+      font-size: 20px;
+      color: var(--gray);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .about-section {
+      margin-bottom: 80px;
+    }
+    
+    .about-section-title {
+      font-size: 36px;
+      font-weight: 800;
+      margin-bottom: 30px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+    
+    .about-image {
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .about-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    
+    .about-content {
+      color: var(--gray);
+      font-size: 18px;
+      line-height: 1.6;
+    }
+    
+    .about-content p {
+      margin-bottom: 20px;
+    }
+    
+    .about-content p:last-child {
+      margin-bottom: 0;
+    }
+    
+    .about-values {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .value-card {
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 16px;
+      padding: 30px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+    }
+    
+    .value-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--primary), var(--secondary));
+    }
+    
+    .value-icon {
+      font-size: 40px;
+      margin-bottom: 20px;
+      color: var(--primary);
+    }
+    
+    .value-title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: var(--light);
+    }
+    
+    .value-description {
+      color: var(--gray);
+      font-size: 16px;
+    }
+    
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .team-card {
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .team-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      border-color: var(--primary);
+    }
+    
+    .team-image {
+      width: 100%;
+      height: 300px;
+      overflow: hidden;
+    }
+    
+    .team-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all 0.3s ease;
+    }
+    
+    .team-card:hover .team-image img {
+      transform: scale(1.05);
+    }
+    
+    .team-info {
+      padding: 20px;
+    }
+    
+    .team-name {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 5px;
+      color: var(--light);
+    }
+    
+    .team-position {
+      font-size: 16px;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+    
+    .team-bio {
+      color: var(--gray);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    
+    @media (max-width: 768px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .about-image {
+        margin-bottom: 30px;
+      }
+      
+      .team-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Background Elements -->
+  <div class="geometric-shapes">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+    <div class="shape shape-4"></div>
+  </div>
+  <div class="grid-bg"></div>
+  
+  <header>
+    <div class="container header-container">
+      <a href="index.html" class="logo">Lazreus Tech</a>
+      
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      
+      <div class="auth-buttons">
+        <a href="#" class="cash-btn cash-btn-outline login-btn">Login</a>
+        <a href="#" class="cash-btn cash-btn-primary register-btn">Register</a>
+      </div>
+      
+      <button type="button" class="mobile-menu-btn">☰</button>
+    </div>
+  </header>
+  
+  <section class="about">
+    <div class="container">
+      <div class="about-header">
+        <h1 class="about-title">About Lazreus Tech</h1>
+        <p class="about-subtitle">Founded in 2025, Lazreus Tech is a forward-thinking technology company dedicated to empowering businesses with innovative solutions.</p>
+      </div>
+      
+      <div class="about-section">
+        <div class="about-grid">
+          <div class="about-content">
+            <h2 class="about-section-title">Our Story</h2>
+            <p>
+              Lazreus Tech was born from a vision to bridge the gap between cutting-edge technology and practical business solutions. Our founders recognized that many small and scaling businesses were struggling to leverage technology effectively due to limited resources and expertise.
+            </p>
+            <p>
+              Starting with a small team of passionate technologists, we've grown into a comprehensive technology services company that helps businesses of all sizes transform their operations and achieve their goals through innovative tech solutions.
+            </p>
+            <p>
+              Today, we're proud to serve clients across various industries, providing them with the tools and expertise they need to thrive in an increasingly digital world.
+            </p>
+          </div>
+          <div class="about-image">
+            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Team working together">
+          </div>
+        </div>
+      </div>
+      
+      <div class="about-section">
+        <h2 class="about-section-title">Our Values</h2>
+        <div class="about-values">
+          <div class="value-card">
+            <div class="value-icon">💡</div>
+            <h3 class="value-title">Innovation</h3>
+            <p class="value-description">We constantly push the boundaries of what's possible, embracing new technologies and approaches to solve complex problems.</p>
+          </div>
+          
+          <div class="value-card">
+            <div class="value-icon">🤝</div>
+            <h3 class="value-title">Partnership</h3>
+            <p class="value-description">We view our clients as partners, working collaboratively to understand their unique needs and deliver tailored solutions.</p>
+          </div>
+          
+          <div class="value-card">
+            <div class="value-icon">⚡</div>
+            <h3 class="value-title">Excellence</h3>
+            <p class="value-description">We are committed to delivering the highest quality in everything we do, from code to customer service.</p>
+          </div>
+          
+          <div class="value-card">
+            <div class="value-icon">🔄</div>
+            <h3 class="value-title">Adaptability</h3>
+            <p class="value-description">We embrace change and continuously evolve our skills and services to meet the ever-changing technological landscape.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="about-section">
+        <h2 class="about-section-title">Our Team</h2>
+        <div class="team-grid">
+          <div class="team-card">
+            <div class="team-image">
+              <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="CEO">
+            </div>
+            <div class="team-info">
+              <h3 class="team-name">Alex Morgan</h3>
+              <p class="team-position">CEO & Founder</p>
+              <p class="team-bio">With over 15 years of experience in tech leadership, Alex founded Lazreus Tech with a vision to make cutting-edge technology accessible to businesses of all sizes.</p>
+            </div>
+          </div>
+          
+          <div class="team-card">
+            <div class="team-image">
+              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=776&q=80" alt="CTO">
+            </div>
+            <div class="team-info">
+              <h3 class="team-name">Sarah Chen</h3>
+              <p class="team-position">CTO</p>
+              <p class="team-bio">Sarah leads our technical strategy and innovation, bringing her expertise in AI, cloud architecture, and software development to drive our technological advancements.</p>
+            </div>
+          </div>
+          
+          <div class="team-card">
+            <div class="team-image">
+              <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Design Director">
+            </div>
+            <div class="team-info">
+              <h3 class="team-name">Michael Rodriguez</h3>
+              <p class="team-position">Design Director</p>
+              <p class="team-bio">Michael oversees our design team, ensuring that all our solutions not only function flawlessly but also provide exceptional user experiences.</p>
+            </div>
+          </div>
+          
+          <div class="team-card">
+            <div class="team-image">
+              <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Client Success Manager">
+            </div>
+            <div class="team-info">
+              <h3 class="team-name">Emma Johnson</h3>
+              <p class="team-position">Client Success Manager</p>
+              <p class="team-bio">Emma ensures that our clients receive the support they need to maximize the value of our solutions and achieve their business objectives.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-column">
+          <h3>Lazreus Tech</h3>
+          <p style="color: #999; font-size: 14px; margin-bottom: 20px;">Futuristic technology solutions for modern businesses.</p>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Services</h3>
+          <ul class="footer-links">
+            <li><a href="services.html#web">Website Development</a></li>
+            <li><a href="services.html#app">App Development</a></li>
+            <li><a href="services.html#devops">DevOps Services</a></li>
+            <li><a href="services.html#ux">UX Design</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Contact</h3>
+          <ul class="footer-links">
+            <li><a href="mailto:info@lazreustech.com">info@lazreustech.com</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="copyright">
+        &copy; 2025 Lazreus Tech. All rights reserved.
+      </div>
+    </div>
+  </footer>
+  
+  <!-- Login Modal -->
+  <div class="modal" id="login-modal">
+    <div class="modal-content">
+      <button type="button" class="modal-close">&times;</button>
+      <h2 class="modal-title">Login to Your Account</h2>
+      <form id="login-form">
+        <div class="form-group">
+          <label for="login-email" class="form-label">Email</label>
+          <input type="email" id="login-email" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label for="login-password" class="form-label">Password</label>
+          <input type="password" id="login-password" class="form-input" required>
+        </div>
+        <button type="submit" class="cash-btn cash-btn-primary form-submit">Login</button>
+      </form>
+      <p style="text-align: center; margin-top: 20px; color: #999;">
+        Don't have an account? <a href="#" id="switch-to-register" style="color: var(--primary);">Register</a>
+      </p>
+    </div>
+  </div>
+  
+  <!-- Register Modal -->
+  <div class="modal" id="register-modal">
+    <div class="modal-content">
+      <button type="button" class="modal-close">&times;</button>
+      <h2 class="modal-title">Create an Account</h2>
+      <form id="register-form">
+        <div class="form-group">
+          <label for="register-name" class="form-label">Full Name</label>
+          <input type="text" id="register-name" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label for="register-email" class="form-label">Email</label>
+          <input type="email" id="register-email" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label for="register-password" class="form-label">Password</label>
+          <input type="password" id="register-password" class="form-input" required>
+        </div>
+        <button type="submit" class="cash-btn cash-btn-primary form-submit">Register</button>
+      </form>
+      <p style="text-align: center; margin-top: 20px; color: #999;">
+        Already have an account? <a href="#" id="switch-to-login" style="color: var(--primary);">Login</a>
+      </p>
+    </div>
+  </div>
+  
+  <script src="js/main.js"></script>
+  <script>
+    // Switch between login and register modals
+    document.getElementById('switch-to-register').addEventListener('click', (e) => {
+      e.preventDefault();
+      closeModal(document.getElementById('login-modal'));
+      openModal(document.getElementById('register-modal'));
+    });
+    
+    document.getElementById('switch-to-login').addEventListener('click', (e) => {
+      e.preventDefault();
+      closeModal(document.getElementById('register-modal'));
+      openModal(document.getElementById('login-modal'));
+    });
+  </script>
+</body>
+</html>

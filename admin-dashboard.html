@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard - Lazreus Tech</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <style>
+      .dashboard {
+        padding: 80px 0;
+      }
+
+      .dashboard-header {
+        margin-bottom: 40px;
+      }
+
+      .dashboard-title {
+        font-size: 36px;
+        font-weight: 800;
+        margin-bottom: 10px;
+        background: linear-gradient(to right, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .dashboard-subtitle {
+        font-size: 18px;
+        color: var(--gray);
+      }
+
+      .dashboard-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-bottom: 40px;
+      }
+
+      .dashboard-card {
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 16px;
+        padding: 30px;
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+      }
+
+      .dashboard-card-title {
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 15px;
+        color: var(--primary);
+      }
+
+      .dashboard-card-content {
+        color: var(--gray);
+      }
+
+      .dashboard-card-footer {
+        margin-top: 20px;
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .dashboard-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 40px;
+      }
+
+      .dashboard-table th {
+        text-align: left;
+        padding: 15px;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: var(--primary);
+        font-weight: 600;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .dashboard-table td {
+        padding: 15px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        color: var(--gray);
+      }
+
+      .dashboard-table tr:hover td {
+        background-color: rgba(255, 255, 255, 0.05);
+      }
+
+      .status {
+        display: inline-block;
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .status-active {
+        background-color: rgba(0, 214, 50, 0.2);
+        color: var(--primary);
+      }
+
+      .status-pending {
+        background-color: rgba(255, 165, 0, 0.2);
+        color: orange;
+      }
+
+      .status-completed {
+        background-color: rgba(0, 204, 255, 0.2);
+        color: var(--tertiary);
+      }
+
+      .admin-actions {
+        display: flex;
+        gap: 10px;
+      }
+
+      .admin-stats {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+
+      .admin-stats-number {
+        font-size: 36px;
+        font-weight: 800;
+        color: var(--primary);
+        margin-right: 10px;
+      }
+
+      .admin-stats-label {
+        color: var(--gray);
+      }
+
+      @media (max-width: 768px) {
+        .dashboard-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .dashboard-table {
+          display: block;
+          overflow-x: auto;
+        }
+
+        .admin-actions {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Background Elements -->
+    <div class="geometric-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+      <div class="shape shape-4"></div>
+    </div>
+    <div class="grid-bg"></div>
+
+    <header>
+      <div class="container header-container">
+        <a href="index.html" class="logo">Lazreus Tech</a>
+
+        <nav class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="services.html">Services</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="auth-buttons">
+          <!-- User menu will be inserted here by JavaScript -->
+        </div>
+
+        <button type="button" class="mobile-menu-btn">☰</button>
+      </div>
+    </header>
+
+    <section class="dashboard">
+      <div class="container">
+        <div class="dashboard-header">
+          <h1 class="dashboard-title">Admin Dashboard</h1>
+          <p class="dashboard-subtitle">
+            Welcome back, Admin! Here's an overview of all projects and clients.
+          </p>
+        </div>
+
+        <div class="dashboard-grid">
+          <div class="dashboard-card">
+            <h2 class="dashboard-card-title">Projects Overview</h2>
+            <div class="dashboard-card-content">
+              <div class="admin-stats">
+                <span class="admin-stats-number">12</span>
+                <span class="admin-stats-label">Total Projects</span>
+              </div>
+              <div class="admin-stats">
+                <span class="admin-stats-number">8</span>
+                <span class="admin-stats-label">Active Projects</span>
+              </div>
+              <div class="admin-stats">
+                <span class="admin-stats-number">4</span>
+                <span class="admin-stats-label">Completed Projects</span>
+              </div>
+            </div>
+            <div class="dashboard-card-footer">
+              <a href="#projects" class="cash-btn cash-btn-outline"
+                >Manage Projects</a
+              >
+            </div>
+          </div>
+
+          <div class="dashboard-card">
+            <h2 class="dashboard-card-title">Clients Overview</h2>
+            <div class="dashboard-card-content">
+              <div class="admin-stats">
+                <span class="admin-stats-number">15</span>
+                <span class="admin-stats-label">Total Clients</span>
+              </div>
+              <div class="admin-stats">
+                <span class="admin-stats-number">3</span>
+                <span class="admin-stats-label">New Clients (This Month)</span>
+              </div>
+            </div>
+            <div class="dashboard-card-footer">
+              <a href="#clients" class="cash-btn cash-btn-outline"
+                >Manage Clients</a
+              >
+            </div>
+          </div>
+
+          <div class="dashboard-card">
+            <h2 class="dashboard-card-title">Support Tickets</h2>
+            <div class="dashboard-card-content">
+              <div class="admin-stats">
+                <span class="admin-stats-number">5</span>
+                <span class="admin-stats-label">Open Tickets</span>
+              </div>
+              <div class="admin-stats">
+                <span class="admin-stats-number">2</span>
+                <span class="admin-stats-label">Urgent Tickets</span>
+              </div>
+            </div>
+            <div class="dashboard-card-footer">
+              <a href="#tickets" class="cash-btn cash-btn-outline"
+                >Manage Tickets</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <h2 class="section-title" id="projects">All Projects</h2>
+        <div class="dashboard-table-container">
+          <table class="dashboard-table">
+            <thead>
+              <tr>
+                <th>Project Name</th>
+                <th>Client</th>
+                <th>Type</th>
+                <th>Start Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>E-commerce Website</td>
+                <td>John Smith</td>
+                <td>Website Development</td>
+                <td>May 1, 2025</td>
+                <td><span class="status status-active">Active</span></td>
+                <td>
+                  <div class="admin-actions">
+                    <a href="#" class="cash-btn cash-btn-outline">Edit</a>
+                    <a href="#" class="cash-btn cash-btn-primary">View</a>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Mobile App</td>
+                <td>Sarah Johnson</td>
+                <td>App Development</td>
+                <td>April 15, 2025</td>
+                <td><span class="status status-active">Active</span></td>
+                <td>
+                  <div class="admin-actions">
+                    <a href="#" class="cash-btn cash-btn-outline">Edit</a>
+                    <a href="#" class="cash-btn cash-btn-primary">View</a>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Brand Redesign</td>
+                <td>Tech Solutions Inc.</td>
+                <td>Creative Services</td>
+                <td>March 10, 2025</td>
+                <td><span class="status status-completed">Completed</span></td>
+                <td>
+                  <div class="admin-actions">
+                    <a href="#" class="cash-btn cash-btn-outline">Edit</a>
+                    <a href="#" class="cash-btn cash-btn-primary">View</a>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 class="section-title" id="clients">All Clients</h2>
+        <div class="dashboard-table-container">
+          <table class="dashboard-table">
+            <thead>
+              <tr>
+                <th>Client Name</th>
+                <th>Email</th>
+                <th>Projects</th>
+                <th>Join Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>John Smith</td>
+                <td>john@example.com</td>
+                <td>1</td>
+                <td>May 1, 2025</td>
+                <td>
+                  <div class="admin-actions">
+                    <a href="#" class="cash-btn cash-btn-outline">Edit</a>
+                    <a href="#" class="cash-btn cash-btn-primary">View</a>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Sarah Johnson</td>
+                <td>sarah@example.com</td>
+                <td>1</td>
+                <td>April 15, 2025</td>
+                <td>
+                  <div class="admin-actions">
+                    <a href="#" class="cash-btn cash-btn-outline">Edit</a>
+                    <a href="#" class="cash-btn cash-btn-primary">View</a>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Tech Solutions Inc.</td>
+                <td>info@techsolutions.com</td>
+                <td>1</td>
+                <td>March 10, 2025</td>
+                <td>
+                  <div class="admin-actions">
+                    <a href="#" class="cash-btn cash-btn-outline">Edit</a>
+                    <a href="#" class="cash-btn cash-btn-primary">View</a>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-column">
+            <h3>Lazreus Tech</h3>
+            <p class="footer-text">
+              Futuristic technology solutions for modern businesses.
+            </p>
+          </div>
+
+          <div class="footer-column">
+            <h3>Quick Links</h3>
+            <ul class="footer-links">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="services.html">Services</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h3>Services</h3>
+            <ul class="footer-links">
+              <li><a href="services.html#web">Website Development</a></li>
+              <li><a href="services.html#app">App Development</a></li>
+              <li><a href="services.html#devops">DevOps Services</a></li>
+              <li><a href="services.html#ux">UX Design</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h3>Contact</h3>
+            <ul class="footer-links">
+              <li>
+                <a href="mailto:info@lazreustech.com">info@lazreustech.com</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="copyright">
+          &copy; 2025 Lazreus Tech. All rights reserved.
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+      // Check if user is logged in and is an admin
+      document.addEventListener("DOMContentLoaded", () => {
+        const user = Auth.getUser();
+
+        if (user) {
+          // User is logged in
+          // Check if user is admin
+          if (user.role !== "ADMIN") {
+            window.location.href = "dashboard.html";
+            return;
+          }
+
+          // Update UI with admin info
+          document.querySelector(".dashboard-subtitle").textContent =
+            `Welcome back, Admin ${user.email}! Here's an overview of all projects and clients.`;
+
+          // Create user menu with logout button
+          const authButtons = document.querySelector(".auth-buttons");
+          const userMenu = document.createElement("div");
+          userMenu.className = "user-menu-container";
+          userMenu.innerHTML = `
+            <button class="cash-btn cash-btn-primary user-menu-btn">
+              ${user.email.split("@")[0]}
+            </button>
+            <div class="user-menu">
+              <a href="admin-dashboard.html">Dashboard</a>
+              <a href="#" id="logout-btn">Logout</a>
+            </div>
+          `;
+
+          authButtons.appendChild(userMenu);
+
+          // Add event listener to logout button
+          document
+            .getElementById("logout-btn")
+            .addEventListener("click", (e) => {
+              e.preventDefault();
+              Auth.logout();
+            });
+
+          // Toggle user menu
+          const userMenuBtn = document.querySelector(".user-menu-btn");
+          const userMenuDropdown = document.querySelector(".user-menu");
+
+          userMenuBtn.addEventListener("click", () => {
+            userMenuDropdown.style.display =
+              userMenuDropdown.style.display === "block" ? "none" : "block";
+          });
+
+          // Close user menu when clicking outside
+          document.addEventListener("click", (e) => {
+            if (!e.target.closest(".user-menu-container")) {
+              userMenuDropdown.style.display = "none";
+            }
+          });
+        } else {
+          // User is not logged in, redirect to login page
+          window.location.href = "login.html";
+        }
+      });
+    </script>
+  </body>
+</html>

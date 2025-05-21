@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Lazreus Tech</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .contact {
+      padding: 100px 0;
+    }
+    
+    .contact-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+    }
+    
+    .contact-info {
+      padding-right: 50px;
+    }
+    
+    .contact-title {
+      font-size: 36px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .contact-text {
+      color: var(--gray);
+      margin-bottom: 30px;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+    
+    .contact-method {
+      margin-bottom: 20px;
+    }
+    
+    .contact-method-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--primary);
+    }
+    
+    .contact-method-value {
+      color: var(--gray);
+      font-size: 16px;
+    }
+    
+    .contact-method-value a {
+      color: var(--gray);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .contact-method-value a:hover {
+      color: var(--primary);
+    }
+    
+    .contact-form-container {
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 16px;
+      padding: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+    }
+    
+    .contact-form-title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--light);
+    }
+    
+    .form-input {
+      width: 100%;
+      padding: 12px 16px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      color: var(--light);
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+    
+    .form-textarea {
+      width: 100%;
+      padding: 12px 16px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      color: var(--light);
+      font-size: 16px;
+      transition: all 0.3s ease;
+      min-height: 150px;
+      resize: vertical;
+    }
+    
+    .form-input:focus, .form-textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(0, 214, 50, 0.2);
+    }
+    
+    .form-submit {
+      width: 100%;
+      margin-top: 10px;
+    }
+    
+    @media (max-width: 768px) {
+      .contact-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .contact-info {
+        padding-right: 0;
+        margin-bottom: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Background Elements -->
+  <div class="geometric-shapes">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+    <div class="shape shape-4"></div>
+  </div>
+  <div class="grid-bg"></div>
+  
+  <header>
+    <div class="container header-container">
+      <a href="index.html" class="logo">Lazreus Tech</a>
+      
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      
+      <div class="auth-buttons">
+        <a href="#" class="cash-btn cash-btn-outline login-btn">Login</a>
+        <a href="#" class="cash-btn cash-btn-primary register-btn">Register</a>
+      </div>
+      
+      <button type="button" class="mobile-menu-btn">☰</button>
+    </div>
+  </header>
+  
+  <section class="contact">
+    <div class="container">
+      <div class="contact-container">
+        <div class="contact-info">
+          <h1 class="contact-title">Get in Touch</h1>
+          <p class="contact-text">
+            Have a question or want to discuss a project? We'd love to hear from you. Fill out the form or contact us directly using the information below.
+          </p>
+          
+          <div class="contact-method">
+            <h3 class="contact-method-title">Email</h3>
+            <p class="contact-method-value">
+              <a href="mailto:info@lazreustech.com">info@lazreustech.com</a>
+            </p>
+          </div>
+          
+          <div class="contact-method">
+            <h3 class="contact-method-title">Phone</h3>
+            <p class="contact-method-value">
+              <a href="tel:+1234567890">+1 (234) 567-890</a>
+            </p>
+          </div>
+          
+          <div class="contact-method">
+            <h3 class="contact-method-title">Address</h3>
+            <p class="contact-method-value">
+              123 Tech Street<br>
+              Innovation District<br>
+              San Francisco, CA 94105
+            </p>
+          </div>
+          
+          <div class="contact-method">
+            <h3 class="contact-method-title">Hours</h3>
+            <p class="contact-method-value">
+              Monday - Friday: 9am - 6pm<br>
+              Saturday - Sunday: Closed
+            </p>
+          </div>
+        </div>
+        
+        <div class="contact-form-container">
+          <h2 class="contact-form-title">Send Us a Message</h2>
+          <form id="contact-form">
+            <div class="form-group">
+              <label for="name" class="form-label">Full Name</label>
+              <input type="text" id="name" class="form-input" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" id="email" class="form-input" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="subject" class="form-label">Subject</label>
+              <input type="text" id="subject" class="form-input" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="message" class="form-label">Message</label>
+              <textarea id="message" class="form-textarea" required></textarea>
+            </div>
+            
+            <button type="submit" class="cash-btn cash-btn-primary form-submit">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-column">
+          <h3>Lazreus Tech</h3>
+          <p style="color: #999; font-size: 14px; margin-bottom: 20px;">Futuristic technology solutions for modern businesses.</p>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Services</h3>
+          <ul class="footer-links">
+            <li><a href="services.html#web">Website Development</a></li>
+            <li><a href="services.html#app">App Development</a></li>
+            <li><a href="services.html#devops">DevOps Services</a></li>
+            <li><a href="services.html#ux">UX Design</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Contact</h3>
+          <ul class="footer-links">
+            <li><a href="mailto:info@lazreustech.com">info@lazreustech.com</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="copyright">
+        &copy; 2025 Lazreus Tech. All rights reserved.
+      </div>
+    </div>
+  </footer>
+  
+  <!-- Login Modal -->
+  <div class="modal" id="login-modal">
+    <div class="modal-content">
+      <button type="button" class="modal-close">&times;</button>
+      <h2 class="modal-title">Login to Your Account</h2>
+      <form id="login-form">
+        <div class="form-group">
+          <label for="login-email" class="form-label">Email</label>
+          <input type="email" id="login-email" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label for="login-password" class="form-label">Password</label>
+          <input type="password" id="login-password" class="form-input" required>
+        </div>
+        <button type="submit" class="cash-btn cash-btn-primary form-submit">Login</button>
+      </form>
+      <p style="text-align: center; margin-top: 20px; color: #999;">
+        Don't have an account? <a href="#" id="switch-to-register" style="color: var(--primary);">Register</a>
+      </p>
+    </div>
+  </div>
+  
+  <!-- Register Modal -->
+  <div class="modal" id="register-modal">
+    <div class="modal-content">
+      <button type="button" class="modal-close">&times;</button>
+      <h2 class="modal-title">Create an Account</h2>
+      <form id="register-form">
+        <div class="form-group">
+          <label for="register-name" class="form-label">Full Name</label>
+          <input type="text" id="register-name" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label for="register-email" class="form-label">Email</label>
+          <input type="email" id="register-email" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label for="register-password" class="form-label">Password</label>
+          <input type="password" id="register-password" class="form-input" required>
+        </div>
+        <button type="submit" class="cash-btn cash-btn-primary form-submit">Register</button>
+      </form>
+      <p style="text-align: center; margin-top: 20px; color: #999;">
+        Already have an account? <a href="#" id="switch-to-login" style="color: var(--primary);">Login</a>
+      </p>
+    </div>
+  </div>
+  
+  <script src="js/main.js"></script>
+  <script>
+    // Contact form submission
+    document.getElementById('contact-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      // Get form values
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const subject = document.getElementById('subject').value;
+      const message = document.getElementById('message').value;
+      
+      // Simulate form submission
+      console.log('Form submitted:', { name, email, subject, message });
+      
+      // Show success message
+      showToast('Message sent successfully! We\'ll get back to you soon.', 'success');
+      
+      // Reset form
+      document.getElementById('contact-form').reset();
+    });
+    
+    // Switch between login and register modals
+    document.getElementById('switch-to-register').addEventListener('click', (e) => {
+      e.preventDefault();
+      closeModal(document.getElementById('login-modal'));
+      openModal(document.getElementById('register-modal'));
+    });
+    
+    document.getElementById('switch-to-login').addEventListener('click', (e) => {
+      e.preventDefault();
+      closeModal(document.getElementById('register-modal'));
+      openModal(document.getElementById('login-modal'));
+    });
+  </script>
+</body>
+</html>

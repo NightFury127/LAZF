@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Lazreus Tech</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <style>
+      .auth-page {
+        min-height: calc(100vh - 80px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 0;
+        margin-top: 20px;
+      }
+
+      .auth-container {
+        width: 100%;
+        max-width: 500px;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 16px;
+        padding: 40px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
+
+      .auth-logo {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .auth-logo a {
+        font-size: 28px;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: -1px;
+        color: var(--primary);
+        text-decoration: none;
+      }
+
+      .auth-title {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        text-align: center;
+        color: var(--light);
+      }
+
+      .auth-subtitle {
+        font-size: 16px;
+        color: var(--gray);
+        margin-bottom: 30px;
+        text-align: center;
+      }
+
+      .auth-form {
+        margin-bottom: 20px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: var(--light);
+      }
+
+      .form-input {
+        width: 100%;
+        padding: 12px 16px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        color: var(--light);
+        font-size: 16px;
+        transition: all 0.3s ease;
+      }
+
+      .form-input:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2);
+      }
+
+      .form-submit {
+        width: 100%;
+        margin-top: 10px;
+      }
+
+      .auth-footer {
+        text-align: center;
+        margin-top: 20px;
+        color: var(--gray);
+        font-size: 14px;
+      }
+
+      .auth-footer a {
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .auth-footer a:hover {
+        text-decoration: underline;
+      }
+
+      .forgot-password {
+        text-align: right;
+        margin-top: -10px;
+        margin-bottom: 20px;
+      }
+
+      .forgot-password a {
+        color: var(--primary);
+        text-decoration: none;
+        font-size: 14px;
+      }
+
+      .forgot-password a:hover {
+        text-decoration: underline;
+      }
+
+      .auth-divider {
+        display: flex;
+        align-items: center;
+        margin: 30px 0;
+      }
+
+      .auth-divider::before,
+      .auth-divider::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      .auth-divider span {
+        padding: 0 15px;
+        color: var(--gray);
+        font-size: 14px;
+      }
+
+      .social-login {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+      }
+
+      .social-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .social-btn:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        transform: translateY(-3px);
+      }
+
+      .social-btn img {
+        width: 24px;
+        height: 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Background Elements -->
+    <div class="geometric-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+      <div class="shape shape-4"></div>
+    </div>
+    <div class="grid-bg"></div>
+
+    <header>
+      <div class="container header-container">
+        <a href="index.html" class="logo">Lazreus Tech</a>
+
+        <nav class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="services.html">Services</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="auth-buttons">
+          <a
+            href="login.html"
+            class="cash-btn cash-btn-outline login-btn active"
+            >Login</a
+          >
+          <a href="signup.html" class="cash-btn cash-btn-primary register-btn"
+            >Sign Up</a
+          >
+        </div>
+
+        <button type="button" class="mobile-menu-btn">☰</button>
+      </div>
+    </header>
+
+    <section class="auth-page">
+      <div class="auth-container">
+        <h1 class="auth-title">Welcome Back</h1>
+        <p class="auth-subtitle">
+          Log in to access your account and manage your projects.
+        </p>
+
+        <form id="login-form" class="auth-form">
+          <div class="form-group">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" id="email" class="form-input" required />
+          </div>
+
+          <div class="form-group">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" id="password" class="form-input" required />
+          </div>
+
+          <div class="forgot-password">
+            <a href="#">Forgot password?</a>
+          </div>
+
+          <button type="submit" class="cash-btn cash-btn-primary form-submit">
+            Log In
+          </button>
+        </form>
+
+        <div class="auth-divider">
+          <span>Or log in with</span>
+        </div>
+
+        <div class="social-login">
+          <button class="social-btn">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png"
+              alt="Google"
+            />
+          </button>
+          <button class="social-btn">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/5968/5968764.png"
+              alt="Facebook"
+            />
+          </button>
+          <button class="social-btn">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/3670/3670151.png"
+              alt="Apple"
+            />
+          </button>
+        </div>
+
+        <div class="auth-footer">
+          Don't have an account? <a href="signup.html">Sign Up</a>
+        </div>
+      </div>
+    </section>
+
+    <script src="js/auth.js"></script>
+    <script>
+      // DOM Elements
+      const loginForm = document.getElementById("login-form");
+
+      // Toast notification
+      function showToast(message, type = "success") {
+        // Remove existing toast
+        const existingToast = document.querySelector(".toast");
+        if (existingToast) {
+          existingToast.remove();
+        }
+
+        // Create new toast
+        const toast = document.createElement("div");
+        toast.className = `toast ${type}`;
+        toast.textContent = message;
+
+        document.body.appendChild(toast);
+
+        // Show toast
+        setTimeout(() => {
+          toast.classList.add("active");
+        }, 10);
+
+        // Hide toast after 3 seconds
+        setTimeout(() => {
+          toast.classList.remove("active");
+
+          // Remove from DOM after animation
+          setTimeout(() => {
+            toast.remove();
+          }, 300);
+        }, 3000);
+      }
+
+      // Check if already logged in
+      document.addEventListener("DOMContentLoaded", () => {
+        if (Auth.isLoggedIn()) {
+          const user = Auth.getUser();
+
+          if (user.role === "ADMIN") {
+            window.location.href = "admin-dashboard.html";
+          } else {
+            window.location.href = "dashboard.html";
+          }
+        }
+      });
+
+      // Login form submission
+      loginForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        // Login user
+        const result = await Auth.login(email, password);
+
+        if (result.success) {
+          showToast("Login successful", "success");
+
+          // Redirect based on role
+          if (result.user.role === "ADMIN") {
+            window.location.href = "admin-dashboard.html";
+          } else {
+            window.location.href = "dashboard.html";
+          }
+        } else {
+          showToast(result.message, "error");
+        }
+      });
+
+      // Social login buttons (for demo purposes)
+      document.querySelectorAll(".social-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          showToast("Social login is not implemented in this demo", "info");
+        });
+      });
+    </script>
+  </body>
+</html>

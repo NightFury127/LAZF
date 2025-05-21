@@ -1,0 +1,62 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider        = "prisma-client-js"
+  // For deployment on Vercel/Railway
+  previewFeatures = []
+  // Improve performance with native database types
+  engineType      = "binary"
+}
+
+datasource db {
+  provider   = "postgresql"
+  // Main connection string with connection pooling for Vercel/Railway
+  url        = env("DATABASE_URL")
+  // Direct connection for migrations (required for connection pooling)
+  directUrl  = env("DIRECT_URL")
+  // Use Prisma's relation mode for better compatibility with serverless environments
+  relationMode = "prisma"
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  password      String
+  image         String?
+  role          Role      @default(CUSTOMER)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  bookings      Booking[]
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+enum Role {
+  ADMIN
+  CUSTOMER
+}
+
+model Booking {
+  id          String    @id @default(cuid())
+  userId      String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  date        DateTime
+  message     String
+  contacted   Boolean   @default(false)
+  contactedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([userId])
+  @@index([date])
+  @@index([contacted])
+}

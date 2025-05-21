@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up - Lazreus Tech</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <style>
+      .auth-page {
+        min-height: calc(100vh - 80px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 0;
+        margin-top: 20px;
+      }
+
+      .auth-container {
+        width: 100%;
+        max-width: 500px;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 16px;
+        padding: 40px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
+
+      .auth-logo {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .auth-logo a {
+        font-size: 28px;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: -1px;
+        color: var(--primary);
+        text-decoration: none;
+      }
+
+      .auth-title {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        text-align: center;
+        color: var(--light);
+      }
+
+      .auth-subtitle {
+        font-size: 16px;
+        color: var(--gray);
+        margin-bottom: 30px;
+        text-align: center;
+      }
+
+      .auth-form {
+        margin-bottom: 20px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: var(--light);
+      }
+
+      .form-input {
+        width: 100%;
+        padding: 12px 16px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        color: var(--light);
+        font-size: 16px;
+        transition: all 0.3s ease;
+      }
+
+      .form-input:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2);
+      }
+
+      .form-submit {
+        width: 100%;
+        margin-top: 10px;
+      }
+
+      .auth-footer {
+        text-align: center;
+        margin-top: 20px;
+        color: var(--gray);
+        font-size: 14px;
+      }
+
+      .auth-footer a {
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .auth-footer a:hover {
+        text-decoration: underline;
+      }
+
+      .otp-container {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+
+      .otp-input {
+        width: 50px;
+        height: 60px;
+        text-align: center;
+        font-size: 24px;
+        font-weight: 700;
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        color: var(--light);
+        transition: all 0.3s ease;
+      }
+
+      .otp-input:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2);
+      }
+
+      .resend-otp {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .resend-otp button {
+        background: none;
+        border: none;
+        color: var(--primary);
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .resend-otp button:hover {
+        text-decoration: underline;
+      }
+
+      .resend-otp button:disabled {
+        color: var(--gray);
+        cursor: not-allowed;
+      }
+
+      .resend-timer {
+        color: var(--gray);
+        font-size: 14px;
+        margin-top: 5px;
+      }
+
+      .auth-step {
+        display: none;
+      }
+
+      .auth-step.active {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Background Elements -->
+    <div class="geometric-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+      <div class="shape shape-4"></div>
+    </div>
+    <div class="grid-bg"></div>
+
+    <header>
+      <div class="container header-container">
+        <a href="index.html" class="logo">Lazreus Tech</a>
+
+        <nav class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="services.html">Services</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="auth-buttons">
+          <a href="login.html" class="cash-btn cash-btn-outline login-btn"
+            >Login</a
+          >
+          <a
+            href="signup.html"
+            class="cash-btn cash-btn-primary register-btn active"
+            >Sign Up</a
+          >
+        </div>
+
+        <button type="button" class="mobile-menu-btn">☰</button>
+      </div>
+    </header>
+
+    <section class="auth-page">
+      <div class="auth-container">
+        <!-- Step 1: Email and Password -->
+        <div id="step-1" class="auth-step active">
+          <h1 class="auth-title">Create an Account</h1>
+          <p class="auth-subtitle">
+            Sign up to access our services and manage your projects.
+          </p>
+
+          <form id="signup-form" class="auth-form">
+            <div class="form-group">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" id="email" class="form-input" required />
+            </div>
+
+            <div class="form-group">
+              <label for="password" class="form-label">Password</label>
+              <input
+                type="password"
+                id="password"
+                class="form-input"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="confirm-password" class="form-label"
+                >Confirm Password</label
+              >
+              <input
+                type="password"
+                id="confirm-password"
+                class="form-input"
+                required
+              />
+            </div>
+
+            <button type="submit" class="cash-btn cash-btn-primary form-submit">
+              Sign Up
+            </button>
+          </form>
+
+          <div class="auth-footer">
+            Already have an account? <a href="login.html">Log In</a>
+          </div>
+        </div>
+
+        <!-- Step 2: OTP Verification -->
+        <div id="step-2" class="auth-step">
+          <h1 class="auth-title">Verify Your Email</h1>
+          <p class="auth-subtitle">
+            We've sent a 6-digit code to your email. Enter it below to verify
+            your account.
+          </p>
+
+          <form id="otp-form" class="auth-form">
+            <div class="otp-container">
+              <input
+                type="text"
+                class="otp-input"
+                maxlength="1"
+                data-index="1"
+                required
+              />
+              <input
+                type="text"
+                class="otp-input"
+                maxlength="1"
+                data-index="2"
+                required
+              />
+              <input
+                type="text"
+                class="otp-input"
+                maxlength="1"
+                data-index="3"
+                required
+              />
+              <input
+                type="text"
+                class="otp-input"
+                maxlength="1"
+                data-index="4"
+                required
+              />
+              <input
+                type="text"
+                class="otp-input"
+                maxlength="1"
+                data-index="5"
+                required
+              />
+              <input
+                type="text"
+                class="otp-input"
+                maxlength="1"
+                data-index="6"
+                required
+              />
+            </div>
+
+            <button type="submit" class="cash-btn cash-btn-primary form-submit">
+              Verify
+            </button>
+          </form>
+
+          <div class="resend-otp">
+            <button id="resend-otp-btn" disabled>Resend Code</button>
+            <div id="resend-timer" class="resend-timer">
+              Resend in <span id="timer-count">60</span> seconds
+            </div>
+          </div>
+
+          <div class="auth-footer">
+            <a href="#" id="back-to-signup">Back to Sign Up</a>
+          </div>
+        </div>
+
+        <!-- Step 3: Success -->
+        <div id="step-3" class="auth-step">
+          <h1 class="auth-title">Account Created!</h1>
+          <p class="auth-subtitle">
+            Your account has been successfully created and verified.
+          </p>
+
+          <button
+            id="go-to-login"
+            class="cash-btn cash-btn-primary form-submit"
+          >
+            Go to Login
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <script src="js/auth.js"></script>
+    <script>
+      // DOM Elements
+      const step1 = document.getElementById("step-1");
+      const step2 = document.getElementById("step-2");
+      const step3 = document.getElementById("step-3");
+      const signupForm = document.getElementById("signup-form");
+      const otpForm = document.getElementById("otp-form");
+      const otpInputs = document.querySelectorAll(".otp-input");
+      const resendOtpBtn = document.getElementById("resend-otp-btn");
+      const timerCount = document.getElementById("timer-count");
+      const backToSignupBtn = document.getElementById("back-to-signup");
+      const goToLoginBtn = document.getElementById("go-to-login");
+
+      let userEmail = "";
+      let resendTimer;
+
+      // Toast notification
+      function showToast(message, type = "success") {
+        // Remove existing toast
+        const existingToast = document.querySelector(".toast");
+        if (existingToast) {
+          existingToast.remove();
+        }
+
+        // Create new toast
+        const toast = document.createElement("div");
+        toast.className = `toast ${type}`;
+        toast.textContent = message;
+
+        document.body.appendChild(toast);
+
+        // Show toast
+        setTimeout(() => {
+          toast.classList.add("active");
+        }, 10);
+
+        // Hide toast after 3 seconds
+        setTimeout(() => {
+          toast.classList.remove("active");
+
+          // Remove from DOM after animation
+          setTimeout(() => {
+            toast.remove();
+          }, 300);
+        }, 3000);
+      }
+
+      // Show step
+      function showStep(step) {
+        document
+          .querySelectorAll(".auth-step")
+          .forEach((el) => el.classList.remove("active"));
+        document.getElementById(`step-${step}`).classList.add("active");
+      }
+
+      // Start resend timer
+      function startResendTimer() {
+        let seconds = 60;
+        timerCount.textContent = seconds;
+
+        resendOtpBtn.disabled = true;
+
+        resendTimer = setInterval(() => {
+          seconds--;
+          timerCount.textContent = seconds;
+
+          if (seconds <= 0) {
+            clearInterval(resendTimer);
+            resendOtpBtn.disabled = false;
+            document.getElementById("resend-timer").style.display = "none";
+          }
+        }, 1000);
+      }
+
+      // Handle OTP input
+      otpInputs.forEach((input) => {
+        input.addEventListener("keyup", (e) => {
+          const index = parseInt(e.target.dataset.index);
+
+          if (e.key >= 0 && e.key <= 9) {
+            if (index < 6) {
+              otpInputs[index].focus();
+            }
+          } else if (e.key === "Backspace") {
+            if (index > 1) {
+              otpInputs[index - 2].focus();
+            }
+          }
+        });
+      });
+
+      // Signup form submission
+      signupForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const confirmPassword =
+          document.getElementById("confirm-password").value;
+
+        // Validate passwords match
+        if (password !== confirmPassword) {
+          showToast("Passwords do not match", "error");
+          return;
+        }
+
+        // Register user
+        const result = await Auth.register(email, password);
+
+        if (result.success) {
+          userEmail = email;
+          showStep(2);
+          startResendTimer();
+          showToast(result.message, "success");
+        } else {
+          showToast(result.message, "error");
+        }
+      });
+
+      // OTP form submission
+      otpForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        // Get OTP from inputs
+        let otp = "";
+        otpInputs.forEach((input) => {
+          otp += input.value;
+        });
+
+        // Validate OTP
+        if (otp.length !== 6) {
+          showToast("Please enter a valid 6-digit code", "error");
+          return;
+        }
+
+        // Verify OTP
+        const result = await Auth.verifyOTP(userEmail, otp);
+
+        if (result.success) {
+          clearInterval(resendTimer);
+          showStep(3);
+          showToast(result.message, "success");
+        } else {
+          showToast(result.message, "error");
+        }
+      });
+
+      // Resend OTP
+      resendOtpBtn.addEventListener("click", async () => {
+        const result = await Auth.resendOTP(userEmail);
+
+        if (result.success) {
+          document.getElementById("resend-timer").style.display = "block";
+          startResendTimer();
+          showToast(result.message, "success");
+        } else {
+          showToast(result.message, "error");
+        }
+      });
+
+      // Back to signup
+      backToSignupBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        clearInterval(resendTimer);
+        showStep(1);
+      });
+
+      // Go to login
+      goToLoginBtn.addEventListener("click", () => {
+        window.location.href = "login.html";
+      });
+    </script>
+  </body>
+</html>

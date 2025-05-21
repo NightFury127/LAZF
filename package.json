@@ -1,0 +1,62 @@
+{
+  "name": "lazreus-tech",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "prisma generate && next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "prisma:generate": "prisma generate",
+    "prisma:push": "prisma db push",
+    "prisma:migrate:dev": "prisma migrate dev",
+    "prisma:migrate:deploy": "prisma migrate deploy",
+    "prisma:seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts",
+    "postinstall": "prisma generate"
+  },
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+  },
+  "dependencies": {
+    "@auth/prisma-adapter": "^2.9.1",
+    "@fontsource/sora": "^5.2.5",
+    "@fontsource/space-mono": "^5.2.5",
+    "@next/font": "^14.2.15",
+    "@prisma/client": "^6.8.2",
+    "bcrypt": "^6.0.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
+    "framer-motion": "^12.12.1",
+    "lucide-react": "^0.511.0",
+    "next-auth": "^4.24.11",
+    "next-themes": "^0.4.6",
+    "prisma": "^6.8.2",
+    "resend": "^4.5.1",
+    "tailwind-merge": "^3.3.0",
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^3.25.13"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.7",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@types/bcrypt": "^5.0.2",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^20.17.50",
+    "@types/react": "^19.1.4",
+    "@types/react-dom": "^19.1.5",
+    "autoprefixer": "^10.4.21",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "node-mocks-http": "^1.17.2",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.1.7",
+    "terser-webpack-plugin": "^5.3.14",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}
