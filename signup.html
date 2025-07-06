@@ -28,8 +28,8 @@
         border-radius: 16px;
         padding: 40px;
         border: 1px solid rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
       }
 
       .auth-logo {
@@ -177,6 +177,74 @@
       .auth-step.active {
         display: block;
       }
+
+      /* Password requirements */
+      .password-requirements {
+        margin-top: 10px;
+        font-size: 12px;
+        color: var(--gray);
+        background-color: rgba(0, 0, 0, 0.3);
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .password-requirements p {
+        margin-bottom: 5px;
+        font-weight: 600;
+      }
+
+      .password-requirements ul {
+        list-style-type: none;
+        padding-left: 5px;
+      }
+
+      .password-requirements li {
+        margin-bottom: 3px;
+        position: relative;
+        padding-left: 20px;
+      }
+
+      .password-requirements li::before {
+        content: "✕";
+        color: var(--error);
+        position: absolute;
+        left: 0;
+      }
+
+      .password-requirements li.valid::before {
+        content: "✓";
+        color: var(--success);
+      }
+
+      .error-message {
+        color: var(--error);
+        font-size: 12px;
+        margin-top: 5px;
+        font-weight: 500;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      /* Form validation styling */
+      .form-input:invalid {
+        border-color: var(--error);
+        background-color: rgba(255, 0, 0, 0.05);
+      }
+
+      /* Custom error message */
+      .form-error-message {
+        display: block;
+        color: var(--error);
+        font-size: 12px;
+        margin-top: 5px;
+        padding: 8px 12px;
+        background-color: rgba(255, 0, 0, 0.1);
+        border-radius: 4px;
+        border-left: 3px solid var(--error);
+      }
     </style>
   </head>
   <body>
@@ -226,8 +294,25 @@
 
           <form id="signup-form" class="auth-form">
             <div class="form-group">
+              <label for="name" class="form-label">Full Name</label>
+              <input type="text" id="name" class="form-input" required />
+            </div>
+
+            <div class="form-group">
               <label for="email" class="form-label">Email</label>
               <input type="email" id="email" class="form-input" required />
+            </div>
+
+            <div class="form-group">
+              <label for="phone" class="form-label">Phone Number</label>
+              <input
+                type="tel"
+                id="phone"
+                class="form-input"
+                required
+                pattern="[0-9]{10,15}"
+                title="Phone number should be 10-15 digits"
+              />
             </div>
 
             <div class="form-group">
@@ -237,7 +322,19 @@
                 id="password"
                 class="form-input"
                 required
+                minlength="8"
+                title="Password must be at least 8 characters and include uppercase, lowercase, number and special character"
               />
+              <div class="password-requirements">
+                <p>Password must contain:</p>
+                <ul>
+                  <li id="length">At least 8 characters</li>
+                  <li id="uppercase">At least 1 uppercase letter</li>
+                  <li id="lowercase">At least 1 lowercase letter</li>
+                  <li id="number">At least 1 number</li>
+                  <li id="special">At least 1 special character</li>
+                </ul>
+              </div>
             </div>
 
             <div class="form-group">
@@ -250,6 +347,9 @@
                 class="form-input"
                 required
               />
+              <div id="password-match-error" class="error-message hidden">
+                Passwords do not match
+              </div>
             </div>
 
             <button type="submit" class="cash-btn cash-btn-primary form-submit">
@@ -322,7 +422,9 @@
           </form>
 
           <div class="resend-otp">
-            <button id="resend-otp-btn" disabled>Resend Code</button>
+            <button type="button" id="resend-otp-btn" disabled>
+              Resend Code
+            </button>
             <div id="resend-timer" class="resend-timer">
               Resend in <span id="timer-count">60</span> seconds
             </div>
@@ -341,6 +443,7 @@
           </p>
 
           <button
+            type="button"
             id="go-to-login"
             class="cash-btn cash-btn-primary form-submit"
           >
@@ -426,47 +529,321 @@
       }
 
       // Handle OTP input
-      otpInputs.forEach((input) => {
-        input.addEventListener("keyup", (e) => {
-          const index = parseInt(e.target.dataset.index);
+      otpInputs.forEach((input, i) => {
+        // Focus on first input when OTP step is shown
+        if (i === 0) {
+          input.addEventListener("focus", function () {
+            setTimeout(() => {
+              this.select();
+            }, 100);
+          });
+        }
 
-          if (e.key >= 0 && e.key <= 9) {
-            if (index < 6) {
-              otpInputs[index].focus();
-            }
-          } else if (e.key === "Backspace") {
-            if (index > 1) {
-              otpInputs[index - 2].focus();
-            }
+        // Handle input
+        input.addEventListener("input", function (e) {
+          // Only allow numbers
+          this.value = this.value.replace(/[^0-9]/g, "");
+
+          // Auto move to next input
+          if (this.value && i < otpInputs.length - 1) {
+            otpInputs[i + 1].focus();
+            otpInputs[i + 1].select();
+          }
+
+          // Check if all inputs are filled
+          checkOTPComplete();
+        });
+
+        // Handle keydown
+        input.addEventListener("keydown", function (e) {
+          // On backspace, go to previous input
+          if (e.key === "Backspace" && !this.value && i > 0) {
+            otpInputs[i - 1].focus();
+            otpInputs[i - 1].select();
           }
         });
+
+        // Handle paste
+        input.addEventListener("paste", function (e) {
+          e.preventDefault();
+
+          // Get pasted data
+          const pastedData = (e.clipboardData || window.clipboardData).getData(
+            "text"
+          );
+
+          // If pasted data is a 6-digit number, distribute across inputs
+          if (/^\d{6}$/.test(pastedData)) {
+            for (let j = 0; j < Math.min(6, pastedData.length); j++) {
+              otpInputs[j].value = pastedData[j];
+            }
+
+            // Focus on last input
+            otpInputs[Math.min(5, pastedData.length - 1)].focus();
+
+            // Check if OTP is complete
+            checkOTPComplete();
+          }
+        });
+      });
+
+      // Check if OTP is complete
+      function checkOTPComplete() {
+        const isComplete = Array.from(otpInputs).every(
+          (input) => input.value.length === 1
+        );
+
+        if (isComplete) {
+          // Auto-submit after a short delay
+          setTimeout(() => {
+            otpForm.dispatchEvent(new Event("submit"));
+          }, 500);
+        }
+      }
+
+      // Password validation
+      const passwordInput = document.getElementById("password");
+      const confirmPasswordInput = document.getElementById("confirm-password");
+      const passwordMatchError = document.getElementById(
+        "password-match-error"
+      );
+      const lengthCheck = document.getElementById("length");
+      const uppercaseCheck = document.getElementById("uppercase");
+      const lowercaseCheck = document.getElementById("lowercase");
+      const numberCheck = document.getElementById("number");
+      const specialCheck = document.getElementById("special");
+
+      // Password validation function
+      function validatePassword() {
+        const password = passwordInput.value;
+
+        // Check length
+        if (password.length >= 8) {
+          lengthCheck.classList.add("valid");
+        } else {
+          lengthCheck.classList.remove("valid");
+        }
+
+        // Check uppercase
+        if (/[A-Z]/.test(password)) {
+          uppercaseCheck.classList.add("valid");
+        } else {
+          uppercaseCheck.classList.remove("valid");
+        }
+
+        // Check lowercase
+        if (/[a-z]/.test(password)) {
+          lowercaseCheck.classList.add("valid");
+        } else {
+          lowercaseCheck.classList.remove("valid");
+        }
+
+        // Check number
+        if (/[0-9]/.test(password)) {
+          numberCheck.classList.add("valid");
+        } else {
+          numberCheck.classList.remove("valid");
+        }
+
+        // Check special character
+        if (/[^A-Za-z0-9]/.test(password)) {
+          specialCheck.classList.add("valid");
+        } else {
+          specialCheck.classList.remove("valid");
+        }
+
+        // Remove any validation error styling if all requirements are met
+        if (isPasswordValid(password)) {
+          passwordInput.setCustomValidity("");
+        }
+      }
+
+      // Check if password meets all requirements
+      function isPasswordValid(password) {
+        return (
+          password.length >= 8 &&
+          /[A-Z]/.test(password) &&
+          /[a-z]/.test(password) &&
+          /[0-9]/.test(password) &&
+          /[^A-Za-z0-9]/.test(password)
+        );
+      }
+
+      // Check if passwords match
+      function checkPasswordsMatch() {
+        if (confirmPasswordInput.value === "") {
+          passwordMatchError.classList.add("hidden");
+          return;
+        }
+
+        if (passwordInput.value === confirmPasswordInput.value) {
+          passwordMatchError.classList.add("hidden");
+        } else {
+          passwordMatchError.classList.remove("hidden");
+        }
+      }
+
+      // Add event listeners for password validation
+      passwordInput.addEventListener("input", validatePassword);
+      passwordInput.addEventListener("input", checkPasswordsMatch);
+      confirmPasswordInput.addEventListener("input", checkPasswordsMatch);
+
+      // Function to show custom error message
+      function showFormError(input, message) {
+        // Remove any existing error message
+        const existingError = input.parentNode.querySelector(
+          ".form-error-message"
+        );
+        if (existingError) {
+          existingError.remove();
+        }
+
+        // Create and add new error message
+        const errorElement = document.createElement("div");
+        errorElement.className = "form-error-message";
+        errorElement.textContent = message;
+
+        // Insert after the input
+        input.parentNode.insertBefore(errorElement, input.nextSibling);
+
+        // Add error class to input
+        input.classList.add("error");
+      }
+
+      // Function to clear form error
+      function clearFormError(input) {
+        const errorElement = input.parentNode.querySelector(
+          ".form-error-message"
+        );
+        if (errorElement) {
+          errorElement.remove();
+        }
+        input.classList.remove("error");
+      }
+
+      // Add custom validation on invalid event
+      passwordInput.addEventListener("invalid", function (e) {
+        // Prevent the browser from showing default error message
+        e.preventDefault();
+
+        // Set custom validation message and show error
+        if (this.value.length === 0) {
+          showFormError(this, "Please enter a password");
+          this.setCustomValidity("Please enter a password");
+        } else if (!isPasswordValid(this.value)) {
+          showFormError(
+            this,
+            "Password must meet all the requirements listed below"
+          );
+          this.setCustomValidity(
+            "Password must meet all the requirements listed below"
+          );
+        } else {
+          clearFormError(this);
+          this.setCustomValidity("");
+        }
+      });
+
+      // Clear custom validation on focus
+      passwordInput.addEventListener("focus", function () {
+        // Clear error styling and message
+        clearFormError(this);
+      });
+
+      // Update validation on input
+      passwordInput.addEventListener("input", function () {
+        // If password is valid, clear any error messages
+        if (isPasswordValid(this.value)) {
+          clearFormError(this);
+          this.setCustomValidity("");
+        }
       });
 
       // Signup form submission
       signupForm.addEventListener("submit", async (e) => {
         e.preventDefault();
 
-        const email = document.getElementById("email").value;
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const phone = document.getElementById("phone").value.trim();
         const password = document.getElementById("password").value;
         const confirmPassword =
           document.getElementById("confirm-password").value;
 
+        // Basic validation
+        if (!name) {
+          showToast("Please enter your full name", "error");
+          document.getElementById("name").focus();
+          return;
+        }
+
+        if (!email) {
+          showToast("Please enter your email address", "error");
+          document.getElementById("email").focus();
+          return;
+        }
+
+        if (!phone) {
+          showToast("Please enter your phone number", "error");
+          document.getElementById("phone").focus();
+          return;
+        }
+
+        // Validate phone number format
+        const phoneRegex = /^\d{10,15}$/;
+        if (!phoneRegex.test(phone.replace(/[^0-9]/g, ""))) {
+          showToast(
+            "Please enter a valid phone number (10-15 digits)",
+            "error"
+          );
+          document.getElementById("phone").focus();
+          return;
+        }
+
         // Validate passwords match
         if (password !== confirmPassword) {
+          passwordMatchError.classList.remove("hidden");
           showToast("Passwords do not match", "error");
           return;
         }
 
-        // Register user
-        const result = await Auth.register(email, password);
+        // Validate password strength using our custom function
+        if (!isPasswordValid(password)) {
+          showToast(
+            "Please ensure your password meets all requirements",
+            "error"
+          );
+          return;
+        }
 
-        if (result.success) {
-          userEmail = email;
-          showStep(2);
-          startResendTimer();
-          showToast(result.message, "success");
-        } else {
-          showToast(result.message, "error");
+        // Disable form during submission
+        const submitButton = document.querySelector(".form-submit");
+        submitButton.disabled = true;
+        submitButton.textContent = "Creating Account...";
+
+        try {
+          // Register user
+          const result = await Auth.register(name, email, phone, password);
+
+          if (result.success) {
+            userEmail = email;
+            showStep(2);
+            startResendTimer();
+            showToast(result.message, "success");
+
+            // Focus on first OTP input
+            setTimeout(() => {
+              document.querySelector(".otp-input").focus();
+            }, 500);
+          } else {
+            showToast(result.message, "error");
+            submitButton.disabled = false;
+            submitButton.textContent = "Sign Up";
+          }
+        } catch (error) {
+          showToast("An error occurred. Please try again.", "error");
+          submitButton.disabled = false;
+          submitButton.textContent = "Sign Up";
         }
       });
 

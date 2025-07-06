@@ -28,8 +28,8 @@
         border-radius: 16px;
         padding: 40px;
         border: 1px solid rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
       }
 
       .auth-logo {
@@ -249,19 +249,19 @@
         </div>
 
         <div class="social-login">
-          <button class="social-btn">
+          <button type="button" class="social-btn">
             <img
               src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png"
               alt="Google"
             />
           </button>
-          <button class="social-btn">
+          <button type="button" class="social-btn">
             <img
               src="https://cdn-icons-png.flaticon.com/512/5968/5968764.png"
               alt="Facebook"
             />
           </button>
-          <button class="social-btn">
+          <button type="button" class="social-btn">
             <img
               src="https://cdn-icons-png.flaticon.com/512/3670/3670151.png"
               alt="Apple"
@@ -328,23 +328,68 @@
       loginForm.addEventListener("submit", async (e) => {
         e.preventDefault();
 
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value;
+        // Get form elements
+        const emailInput = document.getElementById("email");
+        const passwordInput = document.getElementById("password");
+        const submitButton = document.querySelector(".form-submit");
 
-        // Login user
-        const result = await Auth.login(email, password);
+        // Get values
+        const email = emailInput.value.trim();
+        const password = passwordInput.value;
 
-        if (result.success) {
-          showToast("Login successful", "success");
+        // Basic validation
+        if (!email) {
+          showToast("Please enter your email address", "error");
+          emailInput.focus();
+          return;
+        }
 
-          // Redirect based on role
-          if (result.user.role === "ADMIN") {
-            window.location.href = "admin-dashboard.html";
+        if (!password) {
+          showToast("Please enter your password", "error");
+          passwordInput.focus();
+          return;
+        }
+
+        // Disable form during submission
+        emailInput.disabled = true;
+        passwordInput.disabled = true;
+        submitButton.disabled = true;
+        submitButton.textContent = "Logging in...";
+
+        try {
+          // Login user
+          const result = await Auth.login(email, password);
+
+          if (result.success) {
+            showToast("Login successful", "success");
+
+            // Redirect based on role
+            if (result.user.role === "ADMIN") {
+              window.location.href = "admin-dashboard.html";
+            } else {
+              window.location.href = "dashboard.html";
+            }
           } else {
-            window.location.href = "dashboard.html";
+            showToast(result.message, "error");
+
+            // Re-enable form
+            emailInput.disabled = false;
+            passwordInput.disabled = false;
+            submitButton.disabled = false;
+            submitButton.textContent = "Log In";
+
+            // Focus on password field for retry
+            passwordInput.focus();
+            passwordInput.select();
           }
-        } else {
-          showToast(result.message, "error");
+        } catch (error) {
+          showToast("An error occurred. Please try again.", "error");
+
+          // Re-enable form
+          emailInput.disabled = false;
+          passwordInput.disabled = false;
+          submitButton.disabled = false;
+          submitButton.textContent = "Log In";
         }
       });
 

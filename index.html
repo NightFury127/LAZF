@@ -4,13 +4,106 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lazreus Tech - Futuristic Technology Solutions</title>
+
+    <!-- Primary Meta Tags -->
+    <meta
+      name="title"
+      content="Lazreus Tech - Futuristic Technology Solutions"
+    />
+    <meta
+      name="description"
+      content="Empowering growth and innovation for small and scaling businesses through reliable, high-quality technology solutions. Website development, app development, DevOps, UX design, and more."
+    />
+    <meta
+      name="keywords"
+      content="technology services, website development, app development, DevOps, UX design, creative services, promotional assistance, inventory management, wearables"
+    />
+    <meta name="author" content="Lazreus Tech" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://lazreustech.com/" />
+    <meta
+      property="og:title"
+      content="Lazreus Tech - Futuristic Technology Solutions"
+    />
+    <meta
+      property="og:description"
+      content="Empowering growth and innovation for small and scaling businesses through reliable, high-quality technology solutions."
+    />
+    <meta property="og:image" content="images/lazreus-tech-og.jpg" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://lazreustech.com/" />
+    <meta
+      property="twitter:title"
+      content="Lazreus Tech - Futuristic Technology Solutions"
+    />
+    <meta
+      property="twitter:description"
+      content="Empowering growth and innovation for small and scaling businesses through reliable, high-quality technology solutions."
+    />
+    <meta property="twitter:image" content="images/lazreus-tech-og.jpg" />
+
+    <!-- Favicon -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="images/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="images/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="images/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="images/favicon/site.webmanifest" />
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Styles -->
     <link rel="stylesheet" href="css/styles.css" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Lazreus Tech",
+        "url": "https://lazreustech.com",
+        "logo": "https://lazreustech.com/images/logo.png",
+        "description": "Empowering growth and innovation for small and scaling businesses through reliable, high-quality technology solutions.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "US"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "",
+          "contactType": "customer service",
+          "email": "info@lazreustech.com"
+        },
+        "sameAs": [
+          "https://twitter.com/lazreustech",
+          "https://www.linkedin.com/company/lazreustech",
+          "https://www.facebook.com/lazreustech"
+        ]
+      }
+    </script>
   </head>
   <body>
     <!-- Background Elements -->
@@ -24,38 +117,48 @@
 
     <header>
       <div class="container header-container">
-        <a href="index.html" class="logo">Lazreus Tech</a>
+        <a href="index.html" class="logo" aria-label="Lazreus Tech Home"
+          >Lazreus Tech</a
+        >
 
-        <nav class="nav-links">
-          <a href="index.html">Home</a>
+        <nav class="nav-links" aria-label="Main Navigation">
+          <a href="index.html" aria-current="page">Home</a>
           <a href="about.html">About</a>
           <a href="services.html">Services</a>
           <a href="contact.html">Contact</a>
         </nav>
 
-        <div class="auth-buttons">
+        <div class="auth-buttons" aria-label="Authentication">
           <a
             href="login.html"
-            target="_blank"
             class="cash-btn cash-btn-outline login-btn"
+            aria-label="Login to your account"
             >Login</a
           >
           <a
             href="signup.html"
-            target="_blank"
             class="cash-btn cash-btn-primary register-btn"
+            aria-label="Sign up for an account"
             >Sign Up</a
           >
         </div>
 
-        <button type="button" class="mobile-menu-btn">☰</button>
+        <button
+          type="button"
+          class="mobile-menu-btn"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          aria-label="Toggle navigation menu"
+        >
+          ☰
+        </button>
       </div>
     </header>
 
     <section class="hero">
       <div class="container">
         <div class="hero-content">
-          <h1 class="cash-title" data-text="Lazreus Tech">Lazreus Tech</h1>
+          <h1 class="lazreus-title">LAZREUS TECH</h1>
           <p class="cash-subtitle">
             Empowering growth and innovation for small and scaling businesses
             through reliable, high-quality technology solutions.
@@ -72,63 +175,81 @@
       </div>
     </section>
 
-    <section class="services">
+    <section class="services" aria-labelledby="services-title">
       <div class="container">
-        <h2 class="section-title">Our Services</h2>
+        <h2 class="section-title" id="services-title">Our Services</h2>
         <div class="services-grid">
-          <div class="cash-card">
-            <div class="service-icon">💻</div>
+          <article class="cash-card" tabindex="0">
+            <div class="service-icon" aria-hidden="true">💻</div>
             <h3 class="service-title">Website Development</h3>
             <p class="service-description">
               Custom websites and web applications built with modern frameworks
               and responsive design.
             </p>
-          </div>
+            <a href="services.html#web" class="service-link sr-only"
+              >Learn more about Website Development</a
+            >
+          </article>
 
-          <div class="cash-card">
-            <div class="service-icon">📱</div>
+          <article class="cash-card" tabindex="0">
+            <div class="service-icon" aria-hidden="true">📱</div>
             <h3 class="service-title">App Development</h3>
             <p class="service-description">
               Native and cross-platform mobile applications for iOS and Android
               platforms.
             </p>
-          </div>
+            <a href="services.html#app" class="service-link sr-only"
+              >Learn more about App Development</a
+            >
+          </article>
 
-          <div class="cash-card">
-            <div class="service-icon">⚙️</div>
+          <article class="cash-card" tabindex="0">
+            <div class="service-icon" aria-hidden="true">⚙️</div>
             <h3 class="service-title">DevOps Services</h3>
             <p class="service-description">
               Streamline your development and operations with our DevOps
               expertise.
             </p>
-          </div>
+            <a href="services.html#devops" class="service-link sr-only"
+              >Learn more about DevOps Services</a
+            >
+          </article>
 
-          <div class="cash-card">
-            <div class="service-icon">🎨</div>
+          <article class="cash-card" tabindex="0">
+            <div class="service-icon" aria-hidden="true">🎨</div>
             <h3 class="service-title">UX Design</h3>
             <p class="service-description">
               User-centered design that creates intuitive and engaging
               experiences.
             </p>
-          </div>
+            <a href="services.html#ux" class="service-link sr-only"
+              >Learn more about UX Design</a
+            >
+          </article>
 
-          <div class="cash-card">
-            <div class="service-icon">🚀</div>
+          <article class="cash-card" tabindex="0">
+            <div class="service-icon" aria-hidden="true">🚀</div>
             <h3 class="service-title">Creative Services</h3>
             <p class="service-description">
               Branding, graphic design, and creative solutions to enhance your
               visual identity.
             </p>
-          </div>
+            <a href="services.html#creative" class="service-link sr-only"
+              >Learn more about Creative Services</a
+            >
+          </article>
 
-          <div class="cash-card">
-            <div class="service-icon">📊</div>
+          <article class="cash-card" tabindex="0">
+            <div class="service-icon" aria-hidden="true">📊</div>
             <h3 class="service-title">Promotional Assistance</h3>
             <p class="service-description">
               Strategic marketing and promotional campaigns to boost your
               business visibility.
             </p>
-          </div>
+            <a href="services.html#promotional" class="service-link sr-only"
+              >Learn more about Promotional Assistance</a
+            >
+          </article>
         </div>
       </div>
     </section>
@@ -149,6 +270,19 @@
         </div>
       </div>
     </section>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+      <button type="button" class="mobile-menu-close">&times;</button>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="contact.html">Contact</a>
+      <div class="mobile-auth-buttons">
+        <a href="login.html" class="cash-btn cash-btn-outline">Login</a>
+        <a href="signup.html" class="cash-btn cash-btn-primary">Sign Up</a>
+      </div>
+    </div>
 
     <footer class="footer">
       <div class="container">
@@ -219,11 +353,9 @@
             Login
           </button>
         </form>
-        <p style="text-align: center; margin-top: 20px; color: #999">
+        <p class="modal-link-text">
           Don't have an account?
-          <a href="#" id="switch-to-register" style="color: var(--primary)"
-            >Register</a
-          >
+          <a href="#" id="switch-to-register" class="modal-link">Register</a>
         </p>
       </div>
     </div>
@@ -260,49 +392,110 @@
             Register
           </button>
         </form>
-        <p style="text-align: center; margin-top: 20px; color: #999">
+        <p class="modal-link-text">
           Already have an account?
-          <a href="#" id="switch-to-login" style="color: var(--primary)"
-            >Login</a
-          >
+          <a href="#" id="switch-to-login" class="modal-link">Login</a>
         </p>
       </div>
     </div>
 
-    <script src="js/main.js"></script>
     <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/mobile-menu.js"></script>
     <script>
       // Check if user is already logged in
       document.addEventListener("DOMContentLoaded", () => {
+        // Clear any old authentication from the previous system
+        localStorage.removeItem("currentUser");
+
         if (Auth.isLoggedIn()) {
           const user = Auth.getUser();
 
-          // Update UI for logged in user
-          updateUIForLoggedInUser(user);
+          // Update UI for logged in user - use the Auth API
+          const loginBtn = document.querySelector(".login-btn");
+          const registerBtn = document.querySelector(".register-btn");
+          const authButtons = document.querySelector(".auth-buttons");
+
+          // Clear any existing user menu
+          const existingUserMenu = document.querySelector(
+            ".user-menu-container"
+          );
+          if (existingUserMenu) {
+            existingUserMenu.remove();
+          }
+
+          if (loginBtn) loginBtn.style.display = "none";
+          if (registerBtn) registerBtn.style.display = "none";
+
+          // Create user menu
+          const userMenu = document.createElement("div");
+          userMenu.className = "user-menu-container";
+          userMenu.innerHTML = `
+            <button class="cash-btn cash-btn-primary user-menu-btn">
+              ${user.name || user.email.split("@")[0]}
+            </button>
+            <div class="user-menu">
+              <a href="${user.role === "ADMIN" ? "admin-dashboard.html" : "dashboard.html"}">Dashboard</a>
+              <a href="#" id="logout-btn">Logout</a>
+            </div>
+          `;
+
+          if (authButtons) {
+            authButtons.appendChild(userMenu);
+          }
+
+          // Add event listener to logout button
+          const logoutBtn = document.getElementById("logout-btn");
+          if (logoutBtn) {
+            logoutBtn.addEventListener("click", (e) => {
+              e.preventDefault();
+              Auth.logout();
+            });
+          }
+
+          // Toggle user menu
+          const userMenuBtn = document.querySelector(".user-menu-btn");
+          const userMenuDropdown = document.querySelector(".user-menu");
+
+          if (userMenuBtn && userMenuDropdown) {
+            userMenuBtn.addEventListener("click", () => {
+              userMenuDropdown.style.display =
+                userMenuDropdown.style.display === "block" ? "none" : "block";
+            });
+
+            // Close user menu when clicking outside
+            document.addEventListener("click", (e) => {
+              if (!e.target.closest(".user-menu-container")) {
+                userMenuDropdown.style.display = "none";
+              }
+            });
+          }
         }
       });
 
       // Switch between login and register modals
-      document
-        .getElementById("switch-to-register")
-        .addEventListener("click", (e) => {
+      const switchToRegister = document.getElementById("switch-to-register");
+      if (switchToRegister) {
+        switchToRegister.addEventListener("click", (e) => {
           e.preventDefault();
           closeModal(document.getElementById("login-modal"));
           openModal(document.getElementById("register-modal"));
         });
+      }
 
-      document
-        .getElementById("switch-to-login")
-        .addEventListener("click", (e) => {
+      const switchToLogin = document.getElementById("switch-to-login");
+      if (switchToLogin) {
+        switchToLogin.addEventListener("click", (e) => {
           e.preventDefault();
           closeModal(document.getElementById("register-modal"));
           openModal(document.getElementById("login-modal"));
         });
+      }
 
       // Login form submission
-      document
-        .getElementById("login-form")
-        .addEventListener("submit", async (e) => {
+      const loginForm = document.getElementById("login-form");
+      if (loginForm) {
+        loginForm.addEventListener("submit", async (e) => {
           e.preventDefault();
 
           const email = document.getElementById("login-email").value;
@@ -325,61 +518,16 @@
             showToast(result.message, "error");
           }
         });
+      }
 
       // Register form submission
-      document
-        .getElementById("register-form")
-        .addEventListener("submit", (e) => {
+      const registerForm = document.getElementById("register-form");
+      if (registerForm) {
+        registerForm.addEventListener("submit", (e) => {
           e.preventDefault();
 
           // Redirect to signup page for OTP verification
           window.location.href = "signup.html";
-        });
-
-      // Update UI for logged in user
-      function updateUIForLoggedInUser(user) {
-        const loginBtn = document.querySelector(".login-btn");
-        const registerBtn = document.querySelector(".register-btn");
-        const authButtons = document.querySelector(".auth-buttons");
-
-        if (loginBtn) loginBtn.style.display = "none";
-        if (registerBtn) registerBtn.style.display = "none";
-
-        // Create user menu
-        const userMenu = document.createElement("div");
-        userMenu.className = "user-menu-container";
-        userMenu.innerHTML = `
-          <button class="cash-btn cash-btn-primary user-menu-btn">
-            ${user.email.split("@")[0]}
-          </button>
-          <div class="user-menu">
-            <a href="${user.role === "ADMIN" ? "admin-dashboard.html" : "dashboard.html"}">Dashboard</a>
-            <a href="#" id="logout-btn">Logout</a>
-          </div>
-        `;
-
-        authButtons.appendChild(userMenu);
-
-        // Add event listener to logout button
-        document.getElementById("logout-btn").addEventListener("click", (e) => {
-          e.preventDefault();
-          Auth.logout();
-        });
-
-        // Toggle user menu
-        const userMenuBtn = document.querySelector(".user-menu-btn");
-        const userMenuDropdown = document.querySelector(".user-menu");
-
-        userMenuBtn.addEventListener("click", () => {
-          userMenuDropdown.style.display =
-            userMenuDropdown.style.display === "block" ? "none" : "block";
-        });
-
-        // Close user menu when clicking outside
-        document.addEventListener("click", (e) => {
-          if (!e.target.closest(".user-menu-container")) {
-            userMenuDropdown.style.display = "none";
-          }
         });
       }
     </script>

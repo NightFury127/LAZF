@@ -1,0 +1,182 @@
+// DOM Elements
+const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+const navLinks = document.querySelector('.nav-links');
+const authButtons = document.querySelector('.auth-buttons');
+const loginBtn = document.querySelector('.login-btn');
+const registerBtn = document.querySelector('.register-btn');
+const loginModal = document.getElementById('login-modal');
+const registerModal = document.getElementById('register-modal');
+const modalCloseButtons = document.querySelectorAll('.modal-close');
+const loginForm = document.getElementById('login-form');
+const registerForm = document.getElementById('register-form');
+const serviceCards = document.querySelectorAll('.cash-card');
+const ctaButton = document.querySelector('.cta-button');
+
+// Check if DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  // Set active nav link based on current page
+  setActiveNavLink();
+  
+  // Add animation to service cards
+  animateServiceCards();
+});
+
+// Mobile Menu Toggle
+if (mobileMenuBtn) {
+  mobileMenuBtn.addEventListener('click', () => {
+    navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+    authButtons.style.display = authButtons.style.display === 'flex' ? 'none' : 'flex';
+    
+    if (navLinks.style.display === 'flex') {
+      navLinks.style.position = 'absolute';
+      navLinks.style.flexDirection = 'column';
+      navLinks.style.top = '80px';
+      navLinks.style.left = '0';
+      navLinks.style.width = '100%';
+      navLinks.style.backgroundColor = 'var(--dark)';
+      navLinks.style.padding = '20px';
+      
+      authButtons.style.position = 'absolute';
+      authButtons.style.flexDirection = 'column';
+      authButtons.style.top = navLinks.offsetHeight + 80 + 'px';
+      authButtons.style.left = '0';
+      authButtons.style.width = '100%';
+      authButtons.style.backgroundColor = 'var(--dark)';
+      authButtons.style.padding = '0 20px 20px 20px';
+    }
+  });
+}
+
+// Modal Functions
+function openModal(modal) {
+  if (modal) {
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeModal(modal) {
+  if (modal) {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+}
+
+// Close modal when clicking outside content
+document.addEventListener('click', (e) => {
+  if (e.target.classList.contains('modal')) {
+    closeModal(e.target);
+  }
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    const activeModal = document.querySelector('.modal.active');
+    if (activeModal) {
+      closeModal(activeModal);
+    }
+  }
+});
+
+// Modal close buttons
+if (modalCloseButtons) {
+  modalCloseButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const modal = button.closest('.modal');
+      closeModal(modal);
+    });
+  });
+}
+
+// Login Button
+if (loginBtn) {
+  loginBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    openModal(loginModal);
+  });
+}
+
+// Register Button
+if (registerBtn) {
+  registerBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    openModal(registerModal);
+  });
+}
+
+// Toast notification
+function showToast(message, type = 'success') {
+  // Remove existing toast
+  const existingToast = document.querySelector('.toast');
+  if (existingToast) {
+    existingToast.remove();
+  }
+  
+  // Create new toast
+  const toast = document.createElement('div');
+  toast.className = `toast ${type}`;
+  toast.textContent = message;
+  
+  document.body.appendChild(toast);
+  
+  // Show toast
+  setTimeout(() => {
+    toast.classList.add('active');
+  }, 10);
+  
+  // Hide toast after 3 seconds
+  setTimeout(() => {
+    toast.classList.remove('active');
+    
+    // Remove from DOM after animation
+    setTimeout(() => {
+      toast.remove();
+    }, 300);
+  }, 3000);
+}
+
+// Set active nav link based on current page
+function setActiveNavLink() {
+  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  const navLinks = document.querySelectorAll('.nav-links a');
+  
+  navLinks.forEach(link => {
+    const href = link.getAttribute('href');
+    if (href === currentPage || (currentPage === 'index.html' && href === '#')) {
+      link.classList.add('active');
+    }
+  });
+}
+
+// Animate service cards on scroll
+function animateServiceCards() {
+  if (!serviceCards.length) return;
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }, index * 100);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  
+  serviceCards.forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px)';
+    card.style.transition = 'all 0.5s ease';
+    observer.observe(card);
+  });
+}
+
+// CTA Button click
+if (ctaButton) {
+  ctaButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.location.href = 'contact.html';
+  });
+}

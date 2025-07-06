@@ -4,33 +4,46 @@
 
 @layer base {
   :root {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
+    /* Base colors */
+    --background: 0 0% 0%; /* Black */
+    --foreground: 0 0% 100%; /* White */
 
+    /* Gold theme */
+    --primary: 51 100% 50%; /* Gold */
+    --primary-dark: 43 74% 49%; /* Darker gold */
+    --primary-light: 54 100% 88%; /* Light gold */
+    --primary-foreground: 0 0% 0%; /* Black text on gold */
+
+    /* Amber theme */
+    --secondary: 45 100% 51%; /* Amber gold */
+    --secondary-dark: 43 89% 38%; /* Dark goldenrod */
+    --secondary-light: 43 100% 69%; /* Light amber */
+    --secondary-foreground: 0 0% 0%; /* Black text on amber */
+
+    /* UI elements */
     --card: 240 10% 3.9%;
     --card-foreground: 0 0% 98%;
 
     --popover: 240 10% 3.9%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 217 91% 60%;
-    --primary-foreground: 0 0% 98%;
-
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-
     --muted: 240 3.7% 15.9%;
     --muted-foreground: 240 5% 64.9%;
 
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
+    --accent: 0 0% 75%; /* Silver */
+    --accent-dark: 0 0% 63%; /* Dark silver */
+    --accent-foreground: 0 0% 0%;
 
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
+    --ring: 51 100% 50%; /* Gold for focus rings */
+
+    --success: 122 39% 49%;
+    --warning: 36 100% 50%;
+    --info: 217 91% 60%;
 
     --radius: 0.5rem;
   }
